@@ -2,7 +2,9 @@
 // In dev, Vite proxies "/api/*" to the FastAPI server (see vite.config.js),
 // so no absolute host/CORS handling is needed here. In production, point
 // API_BASE at your deployed backend URL.
-const API_BASE = import.meta.env.VITE_API_BASE || "https://etpz.onrender.com";
+// Use the Vite dev proxy by default. Set VITE_API_BASE for a separately
+// deployed backend in production.
+const API_BASE = import.meta.env.VITE_API_BASE || "";
 
 async function request(path, options = {}) {
   const res = await fetch(`${API_BASE}${path}`, {
